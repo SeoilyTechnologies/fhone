@@ -1,0 +1,38 @@
+{
+  "name": "com.seoily.firsthale",
+  "version": "1.0.0",
+  "description": "fhomeapp",
+  "keywords": [
+    "fhone"
+  ],
+  "homepage": "https://github.com/SeoilyTechnologies/fhone#readme",
+  "bugs": {
+    "url": "https://github.com/SeoilyTechnologies/fhone/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeoilyTechnologies/fhone.git"
+  },
+  "license": "ISC",
+  "author": "Abhay kumar rai",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.985.0",
+    "axios": "^1.13.4",
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.6",
+    "crypto-js": "^4.2.0",
+    "csvtojson": "^2.0.14",
+    "dotenv": "^17.2.4",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.22.1",
+    "multer": "^2.0.2",
+    "uuid": "^8.3.2"
+  }
+}

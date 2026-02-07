@@ -16,6 +16,7 @@ console.log("deleteAccount type:", typeof deleteAccount);
 // REGISTER
 router.post("/register", upload.single("profile_image"), registerUser);
 
+
 // VERIFY OTP
 router.post("/verify-otp", verifyOtp);
 

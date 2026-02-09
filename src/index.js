@@ -17,6 +17,7 @@ app.use(cors({
 }));
 
 const authRoute=require('./routes/auth')
+const userRoute=require('./routes/user');
 
 const path = require("path");
 
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/api/auth/",authRoute);
+app.use("/api/user/",userRoute);
 
 const PORT = process.env.PORT || 8080;
 const HOST = '0.0.0.0';

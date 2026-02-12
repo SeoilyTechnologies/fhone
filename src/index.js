@@ -18,6 +18,7 @@ app.use(cors({
 
 const authRoute=require('./routes/auth')
 const userRoute=require('./routes/user');
+const mygatePlanRoute = require("./routes/mygateplan.route");
 
 const path = require("path");
 
@@ -30,6 +31,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/api/auth/",authRoute);
 app.use("/api/user/",userRoute);
+app.use("/api/mygateplan", mygatePlanRoute);
 
 const PORT = process.env.PORT || 8080;
 const HOST = '0.0.0.0';

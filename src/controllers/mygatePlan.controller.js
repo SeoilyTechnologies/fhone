@@ -23,19 +23,19 @@ exports.getPlanByUserId = async (req, res) => {
       });
     }
 
-    // ✅ Correct search
-    const plan = await MyGatePlan.findOne({ userid });
+    const objectUserId = new mongoose.Types.ObjectId(userid);
 
-    if (!plan) {
-      return res.status(404).json({
-        success: false,
-        message: "Plan not found",
-      });
-    }
+    // const plans = await MyGatePlan.find({ userid: objectUserId })
+    //   .sort({ createdAt: -1 });
+const plans = await MyGatePlan.find({ userid })
+  .sort({ createdAt: -1 });
+
+    console.log("Plans Found:", plans.length);
 
     return res.status(200).json({
       success: true,
-      data: plan,
+      total: plans.length,
+      data: plans,
     });
 
   } catch (error) {
@@ -47,9 +47,11 @@ exports.getPlanByUserId = async (req, res) => {
 };
 
 
+
 // ==========================
 // 🔹 Save / Update Plan API
 // ==========================
+
 exports.savePlan = async (req, res) => {
   try {
     const {
@@ -67,7 +69,6 @@ exports.savePlan = async (req, res) => {
       });
     }
 
-    // ✅ Check valid ObjectId
     if (!mongoose.Types.ObjectId.isValid(userid)) {
       return res.status(400).json({
         success: false,
@@ -75,38 +76,19 @@ exports.savePlan = async (req, res) => {
       });
     }
 
-    // 🔎 Find existing plan by userid (NOT findById)
-    let plan = await MyGatePlan.findOne({ userid });
+    // 🔹 Create new plan
+    const newPlan = await MyGatePlan.create({
+      userid,
+      phoneno,
+      plantype,
+      paymentid,
+      paymentreference,
+    });
 
-    if (!plan) {
-      // 🆕 Create new plan
-      plan = await MyGatePlan.create({
-        userid,
-        phoneno,
-        plantype,
-        paymentid,
-        paymentreference,
-      });
-
-      return res.status(201).json({
-        success: true,
-        message: "Plan created successfully",
-        data: plan,
-      });
-    }
-
-    // 🔄 Update existing plan
-    plan.plantype = plantype;
-    plan.phoneno = phoneno;
-    plan.paymentid = paymentid;
-    plan.paymentreference = paymentreference;
-
-    await plan.save();
-
-    return res.status(200).json({
+    return res.status(201).json({
       success: true,
-      message: "Plan updated successfully",
-      data: plan,
+      message: "Plan purchased successfully",
+      data: newPlan, // ✅ only one object
     });
 
   } catch (error) {
@@ -116,4 +98,6 @@ exports.savePlan = async (req, res) => {
     });
   }
 };
+
+
 

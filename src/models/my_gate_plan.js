@@ -6,7 +6,7 @@ const mygatePlanSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",   // User collection se link
       required: true,
-      unique: true,  // ek user ka ek hi plan hoga
+    //  unique: true,  // ek user ka ek hi plan hoga
     },
 
     phoneno: {
@@ -46,4 +46,4 @@ const mygatePlanSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("MyGatePlan", mygatePlanSchema);
+module.exports = mongoose.model("MyGatePlannew", mygatePlanSchema, "mygateplannews");

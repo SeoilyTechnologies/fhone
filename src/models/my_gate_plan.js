@@ -16,8 +16,9 @@ const mygatePlanSchema = new mongoose.Schema(
     },
 
     password: {
-      type: String,
-    },
+  type: String,
+  default: "",
+},
 
     plantype: {
       type: String,
